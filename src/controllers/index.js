@@ -1,1 +1,1 @@
-export * as customerController from './customerController.js';
+module.exports = customerController = require('./customerController.js');

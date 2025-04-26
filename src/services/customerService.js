@@ -1,3 +1,9 @@
-import { getAll } from '../repositories/customerRepository.js';
+const customerRepository =  require('../repositories/index.js');
 
-export function getCustomersAsync() { return getAll(); }
+function getCustomersAsync() { 
+    return customerRepository.getAll();
+}
+
+module.exports = {
+    getCustomersAsync
+}

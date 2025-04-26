@@ -1,4 +1,4 @@
-import { createPool } from 'mysql2/promise';
+const { createPool } = require('mysql2/promise');
 
 const db = createPool({
   host: process.env.DB_HOST || 'localhost',
@@ -7,4 +7,4 @@ const db = createPool({
   database: process.env.DB_NAME || 'aiqfome'
 });
 
-export default db;
+module.exports = db;

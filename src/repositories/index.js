@@ -1,0 +1,1 @@
+module.exports = customerRepository = require('./customerRepository.js');

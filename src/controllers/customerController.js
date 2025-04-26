@@ -1,10 +1,14 @@
-import { getCustomersAsync } from "../services/customerService.js";
+const customerService = require('../services/index.js');
 
-export async function getCustomers(_, res) {
+async function getCustomers(_, res) {
     try {
-        const result = await getCustomersAsync();
+        const result = await customerService.getCustomersAsync();
         res.json(result);
     } catch (error) {
         console.error(error);
     }
+}
+
+module.exports = {
+    getCustomers
 }
