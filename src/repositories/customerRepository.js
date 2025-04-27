@@ -61,7 +61,6 @@ async function create(customer) {
   }
 }
 
-
 async function update(id, customer) {
   const { name, email, favorite_products } = customer;
 
@@ -125,7 +124,6 @@ async function update(id, customer) {
     throw error;
   }
 }
-
 
 async function remove(id) {
   try {

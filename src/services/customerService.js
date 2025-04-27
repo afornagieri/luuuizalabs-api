@@ -15,7 +15,6 @@ async function createCustomerAsync(data) {
   if (favorite_products && (!Array.isArray(favorite_products) || !favorite_products.every(Number.isInteger))) {
     throw new BadRequestError('favorite_products must be an array of integers');
   }
-
   return await customerRepository.create({ name, email, favorite_products });
 }
 
@@ -23,7 +22,6 @@ async function updateCustomerAsync(id, data) {
   if (data.favorite_products && (!Array.isArray(data.favorite_products) || !data.favorite_products.every(Number.isInteger))) {
     throw new BadRequestError('favorite_products must be an array of integers');
   }
-
   return await customerRepository.update(id, data);
 }
 
