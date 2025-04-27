@@ -10,7 +10,7 @@ const login = async (req, res, next) => {
       throw new BadRequestError('Username and password are required');
     }
 
-    if (username !== process.env.JWT_AUTH_LOGIN || password !== process.env.JWT_AUTH_PASSWORD) {
+    if (username !== process.env.JWT_AUTH_USERNAME || password !== process.env.JWT_AUTH_PASSWORD) {
       throw new BadRequestError('Invalid username or password');
     }
 
