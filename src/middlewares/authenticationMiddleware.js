@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const redis = require('../config/redis/redis.js');
 const { UnauthorizedError } = require('../utils/customErrorHandler.js');
 
-async function authenticationMiddleware(req, _, next) {
+async function authenticationMiddleware(req, _res, next) {
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
