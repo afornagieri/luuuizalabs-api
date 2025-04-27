@@ -5,7 +5,7 @@ const {
     InternalServerError
 } = require('../utils/customErrorHandler.js');
 
-function errorHandler(err, _, res, _) {
+function errorHandlerMiddleware(err, _, res, _) {
     console.error(err);
 
     if (err instanceof BadRequestError ||
@@ -17,4 +17,4 @@ function errorHandler(err, _, res, _) {
     res.status(500).json({ error: 'Internal Server Error' });
 }
 
-module.exports = errorHandler;
+module.exports = errorHandlerMiddleware;
