@@ -1,21 +1,32 @@
+const redis = require('../config/redis/redis');
 const { generateToken } = require('../utils/jwt');
 const { BadRequestError } = require('../utils/customErrorHandler');
 
 const login = async (req, res, next) => {
   try {
-    const { login, password } = req.body;
+    const { username, password } = req.body;
 
-    if (!login || !password) {
-      throw new BadRequestError('Login and password are required');
+    if (!username || !password) {
+      throw new BadRequestError('Username and password are required');
     }
 
-    if (login !== process.env.JWT_AUTH_LOGIN || password !== process.env.JWT_AUTH_PASSWORD) {
-      throw new BadRequestError('Invalid login or password');
+    if (username !== process.env.JWT_AUTH_LOGIN || password !== process.env.JWT_AUTH_PASSWORD) {
+      throw new BadRequestError('Invalid username or password');
     }
 
-    const token = generateToken(login.concat(password));
+    const existingToken = await redis.get(`token:${username}`);
 
-    return res.status(200).json({ message: 'Login successful', token, expiresIn: '15min' });
+    if (existingToken) {
+      return res.status(200).json({
+        message: 'Successful logged in, token already exists'
+      });
+    }
+
+    const token = generateToken(username);
+
+    await redis.setex(`token:${username}`, 900, token);
+
+    return res.status(200).json({ message: 'Successful logged in', token, expiresIn: '15min' });
   } catch (error) {
     next(error);
   }
