@@ -8,14 +8,12 @@ const {
 async function getAll() {
   try {
     const [rows] = await db.query('SELECT * FROM customers');
-    const allProducts = await fetchAndCacheProducts();
+    const products = await fetchAndCacheProducts();
 
     const customers = rows.map((customer) => {
-      const favoriteProductIds = Array.isArray(customer.favorite_products)
-        ? [...new Set(customer.favorite_products)]
-        : [];
+      const favoriteProductIds = Array.isArray(customer.favorite_products) ? [...new Set(customer.favorite_products)] : [];
 
-      const favoriteProducts = allProducts.filter(product =>
+      const favoriteProducts = products.filter(product =>
         favoriteProductIds.includes(product.id)
       );
 
@@ -42,7 +40,7 @@ async function create(customer) {
       throw new BadRequestError('Email already registered');
     }
 
-    let favoriteProductsJson = JSON.stringify([]);
+    let favoriteProductsJson;
     if (favorite_products !== undefined) {
       if (!Array.isArray(favorite_products) || !favorite_products.every(Number.isInteger)) {
         throw new BadRequestError('favorite_products must be an array of integers');

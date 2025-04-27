@@ -1,6 +1,6 @@
 const customerService = require('../services/index.js');
 
-async function getCustomers(_, res, next) {
+async function getCustomers(_req, res, next) {
   try {
     const result = await customerService.getCustomersAsync();
     return res.json(result);
