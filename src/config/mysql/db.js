@@ -10,8 +10,8 @@ try {
   db = createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
+    password: process.env.MYSQL_ROOT_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
     waitForConnections: WAIT_FOR_CONNECTIONS,
     connectionLimit: CONNECTION_LIMIT,
     queueLimit: QUEUE_LIMIT
