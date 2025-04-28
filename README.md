@@ -95,8 +95,10 @@ Acesse a documentação interativa em:
 http://localhost:3000/docs
 ```
 
-Use as credenciais definidas em `SWAGGER_USER` e `SWAGGER_PASS` no `.env`.
+Use as credenciais definidas em `SWAGGER_USER` e `SWAGGER_PASS` no `.env` para se logar e acessar o Swagger.
+Na pasta docs na raíz do projeto há dois arquivos, um referente a coleção com os endpoints e o outro com as variáveis de ambiente, caso deseje testar a api via postman.
 
+Obs: Utilize o token gerado pela rota de login no campo onde é esperado o authorization, para poder utilizar as outras rotas (Swagger).
 ---
 
 ## 🧪 Testes
