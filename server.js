@@ -1,7 +1,8 @@
-require('dotenv').config();
 const app = require('./src/app.js');
 const db = require('./src/config/mysql/db.js');
 const redis = require('./src/config/redis/redis.js');
+
+require('dotenv').config();
 
 async function startServer() {
   try {
@@ -15,8 +16,8 @@ async function startServer() {
     console.info('Connected successfully!');
 
     const PORT = process.env.PORT || 3000;
-    app.listen(PORT, 'localhost', () => {
-      console.log(`Server running on http://localhost:${PORT}`);
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`Server running on http://0.0.0.0:${PORT}`);
     });
 
   } catch (error) {

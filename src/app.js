@@ -8,20 +8,17 @@ const YAML = require('yamljs');
 const path = require('path');
 const basicAuth = require('express-basic-auth');
 
-require('dotenv').config();
-
-const swaggerDocument = YAML.load(path.join(__dirname, '../docs/swagger.yaml'));
+const swaggerDocument = YAML.load(path.resolve(__dirname, '../docs/swagger.yaml'));
 
 const app = express();
 app.use(express.json());
-
 
 app.use('/api/auth', authenticationRoutes);
 app.use('/api/customers', authenticationMiddleware, customerRoutes);
 
 app.use(errorHandlerMiddleware);
 
-app.use(  '/docs',
+app.use('/docs',
     basicAuth({
       users: { 
         [process.env.SWAGGER_USER]: process.env.SWAGGER_PASS 
@@ -30,6 +27,7 @@ app.use(  '/docs',
       realm: 'Swagger UI'
     }),
     swaggerUi.serve,
-    swaggerUi.setup(swaggerDocument));
+    swaggerUi.setup(swaggerDocument)
+);
 
 module.exports = app;
