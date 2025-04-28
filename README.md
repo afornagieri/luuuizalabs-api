@@ -60,11 +60,8 @@ project/
 
 ### 1. Utilizando Docker
 
-1. Copie o conteúdo do arquivo de exemplo e configure as variáveis de ambiente:  
-   ```bash
-   cp .env.example .env
-   ```
-2. Preencha o `.env` com suas credenciais e configurações.
+1. Copie o conteúdo do arquivo de exemplo (.env.example) que está na raíz do projeto e configure as variáveis de ambiente.  
+2. Crie um arquivo `.env` na raíz do projeto com as credenciais.
 3. Inicie os containers:  
    ```bash
    docker-compose up -d
