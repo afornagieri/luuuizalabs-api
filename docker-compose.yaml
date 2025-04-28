@@ -1,26 +1,45 @@
 version: '3.8'
 
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "${PORT}:3000"
+    depends_on:
+      - mysql
+      - redis
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - JWT_AUTH_USERNAME=${JWT_AUTH_USERNAME}
+      - JWT_AUTH_PASSWORD=${JWT_AUTH_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+      - FAKE_STORE_API_BASE_URL=${FAKE_STORE_API_BASE_URL}
+      - SWAGGER_USER=${SWAGGER_USER}
+      - SWAGGER_PASS=${SWAGGER_PASS}
+    command: ["npm", "start"]
+    restart: on-failure
+
   mysql:
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: "123456"
-      MYSQL_DATABASE: "aiqfome"
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
     ports:
-      - "3306:3306"
+      - "${MYSQL_PORT}:3306"
     volumes:
-      - ./src/config/mysql/aiqfome.sql:/docker-entrypoint-initdb.d/aiqfome.sql:ro
+      - "./src/config/mysql/aiqfome.sql:/docker-entrypoint-initdb.d/aiqfome.sql:ro"
     command: --default-authentication-plugin=mysql_native_password
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      retries: 5
 
   redis:
     image: redis:7-alpine
     ports:
-      - "6379:6379"
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 10s
-      retries: 5
+      - "${REDIS_PORT}:6379"
