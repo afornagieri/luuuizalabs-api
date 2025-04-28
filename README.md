@@ -1,4 +1,4 @@
-# Projeto de API - aiqfome
+# Projeto API - aiqfome
 
 Esta API gerencia clientes e seus produtos favoritos, oferecendo autenticação e operações CRUD para clientes.
 
