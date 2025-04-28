@@ -18,7 +18,8 @@ const login = async (req, res, next) => {
 
     if (existingToken) {
       return res.status(200).json({
-        message: 'Successful logged in, token already exists'
+        message: 'Successful logged in, token already exists',
+        token: existingToken
       });
     }
 

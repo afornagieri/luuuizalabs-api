@@ -67,6 +67,7 @@ describe('authController', () => {
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       message: 'Successful logged in, token already exists',
+      token: 'existingToken'
     });
   });
 
