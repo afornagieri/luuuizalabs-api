@@ -43,19 +43,6 @@ project/
 
 ---
 
-## 🔗 Links Úteis
-
-- [.gitignore para Node](https://github.com/github/gitignore/blob/main/Node.gitignore)  
-- [dotenv - Variáveis de Ambiente](https://www.npmjs.com/package/dotenv)  
-- [MySQL2](https://www.npmjs.com/package/mysql2)  
-- [ioredis](https://www.npmjs.com/package/ioredis)  
-- [JWT.io](https://jwt.io/introduction)  
-- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)  
-- [Swagger UI](https://www.npmjs.com/package/swagger-ui)  
-- [express-basic-auth](https://www.npmjs.com/package/express-basic-auth)  
-
----
-
 ## 🏁 Como Rodar o Projeto
 
 ### 1. Utilizando Docker
@@ -94,7 +81,6 @@ A API estará disponível em `http://localhost:3000`.
 | ------ | ------------------------------ | ----------------------------------- |
 | POST   | `/auth/login`                  | Autentica usuário e retorna token   |
 | GET    | `/clients`                     | Lista todos os clientes             |
-| GET    | `/clients/:id`                 | Busca cliente por ID                |
 | POST   | `/clients`                     | Cria novo cliente                   |
 | PUT    | `/clients/:id`                 | Atualiza cliente existente          |
 | DELETE | `/clients/:id`                 | Remove cliente                      |
@@ -123,13 +109,6 @@ npm test
 
 ---
 
-## 📦 Docker
-
-- **Imagem MySQL:** `mysql:8.0`
-- **Imagem Redis:** `redis:alpine`
-
----
-
 ## 👨‍💻 Contribuição
 
 1. Faça um fork deste repositório.  
@@ -137,3 +116,19 @@ npm test
 3. Commit suas alterações: `git commit -m 'Descrição da mudança'`  
 4. Push na branch: `git push origin feature/nova-funcionalidade`  
 5. Abra um Pull Request.
+
+---
+
+## Links uteis
+
+- https://www.npmjs.com/package/dotenv
+- https://www.npmjs.com/package/mysql2
+- https://www.npmjs.com/package/ioredis
+- https://hub.docker.com/_/mysql
+- https://hub.docker.com/_/redis
+- https://jestjs.io/docs/getting-started
+- https://mattmazzola.medium.com/how-to-debug-jest-tests-with-vscode-48f003c7cb41 - Debugging with Jest in VS Code
+- https://jwt.io/introduction
+- https://www.npmjs.com/package/jsonwebtoken
+- https://www.npmjs.com/package/swagger-ui
+- https://www.npmjs.com/package/express-basic-auth
